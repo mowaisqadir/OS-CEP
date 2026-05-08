@@ -1,5 +1,6 @@
 import threading
 import time
+import random
 
 # Data
 tree = list(range(1, 31))
@@ -26,7 +27,10 @@ def Picker(pid):
         if len(tree) == 0:
             mutex_tree.release()
             break
-        fruit = tree.pop(0)
+        
+        index = random.randint(0, len(tree)-1)
+        fruit = tree.pop(index)
+        
         mutex_tree.release()
 
         # ---- Step 2: wait for crate space ----
